@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prancha de Comunicação - Creche</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #F4F7F6; /* Fundo cinza bem clarinho para destacar os botões */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #2C3E50;
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Estilo base do botão */
+        .card {
+            border-radius: 35px; /* Bordas bem redondinhas */
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 8px solid; /* Borda grossa embaixo para dar efeito 3D */
+            transition: all 0.2s ease-in-out;
+            user-select: none; /* Evita que o texto seja selecionado sem querer */
+        }
+
+        /* Efeitos de passar o mouse e clicar */
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+        }
+
+        .card:active {
+            transform: translateY(4px); /* Botão "afunda" ao clicar */
+            border-bottom-width: 2px;
+            margin-top: 6px;
+        }
+
+        .emoji {
+            font-size: 85px;
+            margin-bottom: 15px;
+            /* Leve sombra no emoji para dar profundidade */
+            filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.1)); 
+        }
+
+        .texto {
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        /* --- CORES INDIVIDUAIS MODERNAS E INFANTIS --- */
+        
+        /* Azul Claro */
+        .c-agua { 
+            background-color: #E1F5FE; 
+            border-color: #29B6F6; 
+            color: #0277BD; 
+        }
+        
+        /* Vermelho/Coral */
+        .c-fome { 
+            background-color: #FFEBEE; 
+            border-color: #EF5350; 
+            color: #C62828; 
+        }
+        
+        /* Amarelo */
+        .c-banheiro { 
+            background-color: #FFF8E1; 
+            border-color: #FFCA28; 
+            color: #F57F17; 
+        }
+        
+        /* Verde */
+        .c-brincar { 
+            background-color: #E8F5E9; 
+            border-color: #66BB6A; 
+            color: #2E7D32; 
+        }
+        
+        /* Roxo/Lilás */
+        .c-sono { 
+            background-color: #F3E5F5; 
+            border-color: #AB47BC; 
+            color: #6A1B9A; 
+        }
+        
+        /* Laranja */
+        .c-dor { 
+            background-color: #FFF3E0; 
+            border-color: #FFA726; 
+            color: #E65100; 
+        }
+        
+        /* Responsividade para telas menores (se abrirem num tablet antigo) */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Prancha Mágica</h1>
+
+    <div class="grid-container">
+        <div class="card c-agua" onclick="falar('Quero Água')">
+            <div class="emoji">🚰</div>
+            <div class="texto">Água</div>
+        </div>
+
+        <div class="card c-fome" onclick="falar('Estou com Fome')">
+            <div class="emoji">🍎</div>
+            <div class="texto">Fome</div>
+        </div>
+
+        <div class="card c-banheiro" onclick="falar('Quero ir ao Banheiro')">
+            <div class="emoji">🚽</div>
+            <div class="texto">Banheiro</div>
+        </div>
+
+        <div class="card c-brincar" onclick="falar('Quero Brincar')">
+            <div class="emoji">🧸</div>
+            <div class="texto">Brincar</div>
+        </div>
+
+        <div class="card c-sono" onclick="falar('Estou com Sono')">
+            <div class="emoji">😴</div>
+            <div class="texto">Sono</div>
+        </div>
+
+        <div class="card c-dor" onclick="falar('Estou sentindo Dor')">
+            <div class="emoji">🤕</div>
+            <div class="texto">Dor</div>
+        </div>
+    </div>
+
+    <script>
+        function falar(mensagem) {
+            if ('speechSynthesis' in window) {
+                const fala = new SpeechSynthesisUtterance(mensagem);
+                fala.lang = 'pt-BR';
+                fala.rate = 0.85; // Voz um pouquinho mais calma
+                window.speechSynthesis.speak(fala);
+            } else {
+                alert("O áudio não é suportado neste navegador.");
+            }
+        }
+    </script>
+
+</body>
+</html>
