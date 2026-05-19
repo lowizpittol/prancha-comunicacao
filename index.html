@@ -79,7 +79,7 @@ MENU
 }
 
 .v3-btn{
-    background:#ff7043;
+    background:#43a047;
 }
 
 /* =========================
@@ -109,6 +109,42 @@ TELAS
     cursor:pointer;
     font-size:18px;
     font-weight:bold;
+}
+
+/* =========================
+CONTROLE DE VOZ
+========================= */
+
+.controle-voz{
+    display:flex;
+    gap:15px;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.voz-btn{
+    border:none;
+    padding:14px 22px;
+    border-radius:18px;
+    font-size:18px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.2s;
+}
+
+.voz-btn:hover{
+    transform:scale(1.05);
+}
+
+.feminina{
+    background:#f48fb1;
+    color:white;
+}
+
+.masculina{
+    background:#64b5f6;
+    color:white;
 }
 
 /* =========================
@@ -161,7 +197,7 @@ GRID
 }
 
 /* =====================================
-VERSÃO 1 — FUNDO OCEANO
+VERSÃO 1 — OCEANO
 ===================================== */
 
 #versao1{
@@ -196,7 +232,7 @@ VERSÃO 1 — FUNDO OCEANO
 }
 
 /* =====================================
-VERSÃO 2 — FUNDO ESPAÇO
+VERSÃO 2 — GALÁXIA
 ===================================== */
 
 #versao2{
@@ -232,7 +268,7 @@ VERSÃO 2 — FUNDO ESPAÇO
 }
 
 /* =====================================
-VERSÃO 3 — FUNDO FLORESTA
+VERSÃO 3 — FLORESTA
 ===================================== */
 
 #versao3{
@@ -272,9 +308,7 @@ VERSÃO 3 — FUNDO FLORESTA
 
 <body>
 
-<!-- =========================
-MENU INICIAL
-========================= -->
+<!-- MENU -->
 
 <div class="menu" id="menu">
 
@@ -310,35 +344,47 @@ VERSÃO 1
 
 <h2>🌊 Mundo do Oceano</h2>
 
+<div class="controle-voz">
+
+<button onclick="selecionarVoz('feminina')" class="voz-btn feminina">
+👩 Voz Feminina
+</button>
+
+<button onclick="selecionarVoz('masculina')" class="voz-btn masculina">
+👨 Voz Masculina
+</button>
+
+</div>
+
 <div class="grid">
 
 <div class="card v1" onclick="falar('Quero água')">
-<div class="emoji">🐳</div>
+<div class="emoji">💧</div>
 <div class="texto">Água</div>
 </div>
 
 <div class="card v1" onclick="falar('Estou com fome')">
-<div class="emoji">🐠</div>
+<div class="emoji">🍎</div>
 <div class="texto">Fome</div>
 </div>
 
 <div class="card v1" onclick="falar('Quero ir ao banheiro')">
-<div class="emoji">🪼</div>
+<div class="emoji">🚽</div>
 <div class="texto">Banheiro</div>
 </div>
 
 <div class="card v1" onclick="falar('Quero brincar')">
-<div class="emoji">🦀</div>
+<div class="emoji">🧸</div>
 <div class="texto">Brincar</div>
 </div>
 
 <div class="card v1" onclick="falar('Estou com sono')">
-<div class="emoji">🌙</div>
+<div class="emoji">😴</div>
 <div class="texto">Sono</div>
 </div>
 
 <div class="card v1" onclick="falar('Estou sentindo dor')">
-<div class="emoji">🐙</div>
+<div class="emoji">🤕</div>
 <div class="texto">Dor</div>
 </div>
 
@@ -356,35 +402,47 @@ VERSÃO 2
 
 <h2>🚀 Galáxia Divertida</h2>
 
+<div class="controle-voz">
+
+<button onclick="selecionarVoz('feminina')" class="voz-btn feminina">
+👩 Voz Feminina
+</button>
+
+<button onclick="selecionarVoz('masculina')" class="voz-btn masculina">
+👨 Voz Masculina
+</button>
+
+</div>
+
 <div class="grid">
 
 <div class="card v2" onclick="falar('Quero água')">
-<div class="emoji">🛸</div>
+<div class="emoji">🚰</div>
 <div class="texto">Água</div>
 </div>
 
 <div class="card v2" onclick="falar('Estou com fome')">
-<div class="emoji">👽</div>
+<div class="emoji">🍌</div>
 <div class="texto">Fome</div>
 </div>
 
 <div class="card v2" onclick="falar('Quero ir ao banheiro')">
-<div class="emoji">🌕</div>
+<div class="emoji">🧻</div>
 <div class="texto">Banheiro</div>
 </div>
 
 <div class="card v2" onclick="falar('Quero brincar')">
-<div class="emoji">⭐</div>
+<div class="emoji">⚽</div>
 <div class="texto">Brincar</div>
 </div>
 
 <div class="card v2" onclick="falar('Estou com sono')">
-<div class="emoji">☄️</div>
+<div class="emoji">🌙</div>
 <div class="texto">Sono</div>
 </div>
 
 <div class="card v2" onclick="falar('Estou sentindo dor')">
-<div class="emoji">🪐</div>
+<div class="emoji">❤️‍🩹</div>
 <div class="texto">Dor</div>
 </div>
 
@@ -402,35 +460,47 @@ VERSÃO 3
 
 <h2>🌳 Floresta Encantada</h2>
 
+<div class="controle-voz">
+
+<button onclick="selecionarVoz('feminina')" class="voz-btn feminina">
+👩 Voz Feminina
+</button>
+
+<button onclick="selecionarVoz('masculina')" class="voz-btn masculina">
+👨 Voz Masculina
+</button>
+
+</div>
+
 <div class="grid">
 
 <div class="card v3" onclick="falar('Quero água')">
-<div class="emoji">🐸</div>
+<div class="emoji">💧</div>
 <div class="texto">Água</div>
 </div>
 
 <div class="card v3" onclick="falar('Estou com fome')">
-<div class="emoji">🍓</div>
+<div class="emoji">🍞</div>
 <div class="texto">Fome</div>
 </div>
 
 <div class="card v3" onclick="falar('Quero ir ao banheiro')">
-<div class="emoji">🌻</div>
+<div class="emoji">🚽</div>
 <div class="texto">Banheiro</div>
 </div>
 
 <div class="card v3" onclick="falar('Quero brincar')">
-<div class="emoji">🦋</div>
+<div class="emoji">🪀</div>
 <div class="texto">Brincar</div>
 </div>
 
 <div class="card v3" onclick="falar('Estou com sono')">
-<div class="emoji">🦉</div>
+<div class="emoji">🌙</div>
 <div class="texto">Sono</div>
 </div>
 
 <div class="card v3" onclick="falar('Estou sentindo dor')">
-<div class="emoji">🐻</div>
+<div class="emoji">🤕</div>
 <div class="texto">Dor</div>
 </div>
 
@@ -439,6 +509,12 @@ VERSÃO 3
 </section>
 
 <script>
+
+let vozSelecionada = null;
+
+/* =========================
+ABRIR TELAS
+========================= */
 
 function abrirVersao(id){
 
@@ -452,6 +528,10 @@ function abrirVersao(id){
 
 }
 
+/* =========================
+VOLTAR MENU
+========================= */
+
 function voltarMenu(){
 
     document.querySelectorAll('.tela').forEach(tela=>{
@@ -461,6 +541,47 @@ function voltarMenu(){
     document.getElementById('menu').style.display='flex';
 
 }
+
+/* =========================
+SELEÇÃO DE VOZ
+========================= */
+
+function selecionarVoz(tipo){
+
+    const vozes = speechSynthesis.getVoices();
+
+    if(tipo === 'feminina'){
+
+        vozSelecionada = vozes.find(v =>
+            v.lang.includes('pt') &&
+            (
+                v.name.toLowerCase().includes('female') ||
+                v.name.toLowerCase().includes('maria') ||
+                v.name.toLowerCase().includes('luciana') ||
+                v.name.toLowerCase().includes('google português')
+            )
+        );
+
+    } else {
+
+        vozSelecionada = vozes.find(v =>
+            v.lang.includes('pt') &&
+            (
+                v.name.toLowerCase().includes('male') ||
+                v.name.toLowerCase().includes('ricardo') ||
+                v.name.toLowerCase().includes('daniel')
+            )
+        );
+
+    }
+
+    alert("Voz " + tipo + " selecionada!");
+
+}
+
+/* =========================
+FALAR
+========================= */
 
 function falar(texto){
 
@@ -472,13 +593,25 @@ function falar(texto){
 
         fala.lang='pt-BR';
         fala.rate=0.85;
-        fala.pitch=1.1;
+        fala.pitch=1;
 
-        window.speechSynthesis.speak(fala);
+        if(vozSelecionada){
+            fala.voice = vozSelecionada;
+        }
+
+        speechSynthesis.speak(fala);
 
     }
 
 }
+
+/* =========================
+CARREGAR VOZES
+========================= */
+
+speechSynthesis.onvoiceschanged = () => {
+    speechSynthesis.getVoices();
+};
 
 </script>
 
