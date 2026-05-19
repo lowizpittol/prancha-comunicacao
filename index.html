@@ -1,421 +1,483 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pranchas Interativas - Creche</title>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&display=swap');
 
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Baloo+2:wght@500;700&family=Nunito:wght@700&display=swap');
 
-    body{
-        font-family:'Nunito', sans-serif;
-        background:linear-gradient(to bottom,#f7fbff,#eef5ff);
-        padding:30px;
-        color:#2c3e50;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    h1{
-        text-align:center;
-        font-size:42px;
-        margin-bottom:15px;
-    }
+body{
+    overflow:hidden;
+}
 
-    .descricao{
-        text-align:center;
-        font-size:18px;
-        margin-bottom:40px;
-        color:#5d6d7e;
-    }
+/* =========================
+MENU
+========================= */
 
-    .versao{
-        margin-bottom:70px;
-        background:white;
-        padding:30px;
-        border-radius:30px;
-        box-shadow:0 10px 30px rgba(0,0,0,0.08);
-    }
+.menu{
+    width:100%;
+    height:100vh;
+    background:linear-gradient(135deg,#ffecd2,#fcb69f);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
 
-    .titulo-versao{
-        text-align:center;
-        font-size:34px;
-        margin-bottom:25px;
-    }
+.menu h1{
+    font-size:52px;
+    font-family:'Fredoka', sans-serif;
+    color:#5d4037;
+    margin-bottom:20px;
+}
+
+.menu p{
+    font-size:22px;
+    margin-bottom:40px;
+    color:#6d4c41;
+}
+
+.botoes-menu{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+}
+
+.botao-versao{
+    border:none;
+    padding:22px 40px;
+    border-radius:30px;
+    font-size:24px;
+    cursor:pointer;
+    transition:0.2s;
+    font-weight:bold;
+    color:white;
+}
+
+.botao-versao:hover{
+    transform:scale(1.08);
+}
+
+.v1-btn{
+    background:#42a5f5;
+}
+
+.v2-btn{
+    background:#ab47bc;
+}
+
+.v3-btn{
+    background:#ff7043;
+}
+
+/* =========================
+TELAS
+========================= */
+
+.tela{
+    width:100%;
+    height:100vh;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    overflow:auto;
+    padding:20px;
+}
+
+.ativo{
+    display:flex;
+}
+
+.voltar{
+    margin-top:10px;
+    margin-bottom:15px;
+    border:none;
+    padding:12px 24px;
+    border-radius:20px;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* =========================
+GRID
+========================= */
+
+.grid{
+    width:100%;
+    max-width:1000px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    border-radius:35px;
+    padding:25px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.2s;
+    user-select:none;
+}
+
+.card:hover{
+    transform:translateY(-8px) scale(1.04);
+}
+
+.emoji{
+    margin-bottom:15px;
+}
+
+.texto{
+    font-weight:bold;
+}
+
+@media(max-width:850px){
 
     .grid{
-        display:grid;
-        grid-template-columns:repeat(3,1fr);
-        gap:22px;
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .card{
-        border-radius:32px;
-        padding:28px 18px;
-        text-align:center;
-        cursor:pointer;
-        transition:0.2s;
-        border-bottom:8px solid rgba(0,0,0,0.15);
-        user-select:none;
+}
+
+@media(max-width:600px){
+
+    .grid{
+        grid-template-columns:1fr;
     }
 
-    .card:hover{
-        transform:translateY(-6px) scale(1.03);
-        box-shadow:0 15px 25px rgba(0,0,0,0.12);
-    }
+}
 
-    .card:active{
-        transform:translateY(4px);
-        border-bottom-width:3px;
-    }
+/* =====================================
+VERSÃO 1 — FUNDO OCEANO
+===================================== */
 
-    .emoji{
-        font-size:72px;
-        margin-bottom:12px;
-    }
+#versao1{
+    background:
+    radial-gradient(circle at top left,#81d4fa,#4fc3f7,#0288d1);
+    font-family:'Fredoka', sans-serif;
+}
 
-    .texto{
-        font-size:26px;
-        font-weight:800;
-    }
+#versao1 h2{
+    font-size:48px;
+    color:white;
+    margin-bottom:20px;
+}
 
-    /* =========================
-       VERSÃO 1
-    ========================== */
+#versao1 .voltar{
+    background:white;
+    color:#0288d1;
+}
 
-    .v1-agua{
-        background:#dff6ff;
-        color:#0277bd;
-        border-color:#29b6f6;
-    }
+.v1{
+    background:rgba(255,255,255,0.92);
+    border-bottom:10px solid #039be5;
+    color:#01579b;
+}
 
-    .v1-fome{
-        background:#ffe7d9;
-        color:#d84315;
-        border-color:#ff7043;
-    }
+.v1 .emoji{
+    font-size:85px;
+}
 
-    .v1-banheiro{
-        background:#fff8d6;
-        color:#f57f17;
-        border-color:#ffca28;
-    }
+.v1 .texto{
+    font-size:28px;
+}
 
-    .v1-brincar{
-        background:#e3ffe5;
-        color:#2e7d32;
-        border-color:#66bb6a;
-    }
+/* =====================================
+VERSÃO 2 — FUNDO ESPAÇO
+===================================== */
 
-    .v1-sono{
-        background:#efe2ff;
-        color:#7b1fa2;
-        border-color:#ab47bc;
-    }
+#versao2{
+    background:
+    linear-gradient(to bottom,#1a237e,#512da8,#7b1fa2);
+    font-family:'Baloo 2', cursive;
+}
 
-    .v1-dor{
-        background:#ffe3e3;
-        color:#c62828;
-        border-color:#ef5350;
-    }
+#versao2 h2{
+    font-size:56px;
+    color:#fff176;
+    margin-bottom:20px;
+}
 
-    /* =========================
-       VERSÃO 2
-    ========================== */
+#versao2 .voltar{
+    background:#fff176;
+    color:#4a148c;
+}
 
-    .v2-agua{
-        background:#c9f9ff;
-        color:#006064;
-        border-color:#00acc1;
-    }
+.v2{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(8px);
+    border:3px solid rgba(255,255,255,0.4);
+    color:white;
+}
 
-    .v2-fome{
-        background:#fff0c9;
-        color:#ef6c00;
-        border-color:#ffa726;
-    }
+.v2 .emoji{
+    font-size:92px;
+}
 
-    .v2-banheiro{
-        background:#e8f5e9;
-        color:#2e7d32;
-        border-color:#43a047;
-    }
+.v2 .texto{
+    font-size:32px;
+}
 
-    .v2-brincar{
-        background:#ffe0f0;
-        color:#ad1457;
-        border-color:#ec407a;
-    }
+/* =====================================
+VERSÃO 3 — FUNDO FLORESTA
+===================================== */
 
-    .v2-sono{
-        background:#dfe7ff;
-        color:#3949ab;
-        border-color:#5c6bc0;
-    }
+#versao3{
+    background:
+    linear-gradient(135deg,#c8e6c9,#81c784,#388e3c);
+    font-family:'Nunito', sans-serif;
+}
 
-    .v2-dor{
-        background:#ffe4ec;
-        color:#c2185b;
-        border-color:#f06292;
-    }
+#versao3 h2{
+    font-size:50px;
+    color:#1b5e20;
+    margin-bottom:20px;
+}
 
-    /* =========================
-       VERSÃO 3
-    ========================== */
+#versao3 .voltar{
+    background:#1b5e20;
+    color:white;
+}
 
-    .v3-agua{
-        background:#d6f4ff;
-        color:#01579b;
-        border-color:#039be5;
-    }
+.v3{
+    background:#fff8e1;
+    border-bottom:10px solid #ffca28;
+    color:#5d4037;
+    box-shadow:0 10px 20px rgba(0,0,0,0.12);
+}
 
-    .v3-fome{
-        background:#fff3e0;
-        color:#e65100;
-        border-color:#fb8c00;
-    }
+.v3 .emoji{
+    font-size:78px;
+}
 
-    .v3-banheiro{
-        background:#ede7f6;
-        color:#5e35b1;
-        border-color:#7e57c2;
-    }
-
-    .v3-brincar{
-        background:#fff9c4;
-        color:#f57f17;
-        border-color:#fdd835;
-    }
-
-    .v3-sono{
-        background:#f3e5f5;
-        color:#6a1b9a;
-        border-color:#8e24aa;
-    }
-
-    .v3-dor{
-        background:#ffebee;
-        color:#b71c1c;
-        border-color:#ef5350;
-    }
-
-    .instrucoes{
-        text-align:center;
-        margin-top:25px;
-        font-size:16px;
-        color:#7f8c8d;
-    }
-
-    @media(max-width:900px){
-        .grid{
-            grid-template-columns:repeat(2,1fr);
-        }
-    }
-
-    @media(max-width:600px){
-        .grid{
-            grid-template-columns:1fr;
-        }
-
-        h1{
-            font-size:32px;
-        }
-
-        .titulo-versao{
-            font-size:28px;
-        }
-
-        .emoji{
-            font-size:64px;
-        }
-
-        .texto{
-            font-size:24px;
-        }
-    }
+.v3 .texto{
+    font-size:30px;
+}
 
 </style>
 </head>
 
 <body>
 
-<h1>Pranchas Interativas da Creche</h1>
+<!-- =========================
+MENU INICIAL
+========================= -->
 
-<div class="descricao">
-Escolha a versão favorita para testar com as crianças 👧🧒
+<div class="menu" id="menu">
+
+<h1>🌟 Pranchas da Creche</h1>
+
+<p>Escolha uma versão para testar com as crianças</p>
+
+<div class="botoes-menu">
+
+<button class="botao-versao v1-btn" onclick="abrirVersao('versao1')">
+🌊 Versão 1
+</button>
+
+<button class="botao-versao v2-btn" onclick="abrirVersao('versao2')">
+🚀 Versão 2
+</button>
+
+<button class="botao-versao v3-btn" onclick="abrirVersao('versao3')">
+🌳 Versão 3
+</button>
+
 </div>
 
-<!-- ========================================= -->
-<!-- VERSÃO 1 -->
-<!-- ========================================= -->
+</div>
 
-<section class="versao">
+<!-- =========================
+VERSÃO 1
+========================= -->
 
-<h2 class="titulo-versao">🌈 Versão 1 — Cores Suaves</h2>
+<section class="tela" id="versao1">
+
+<button class="voltar" onclick="voltarMenu()">⬅ Voltar</button>
+
+<h2>🌊 Mundo do Oceano</h2>
 
 <div class="grid">
 
-<div class="card v1-agua" onclick="falar('Quero água')">
-<div class="emoji">💧</div>
+<div class="card v1" onclick="falar('Quero água')">
+<div class="emoji">🐳</div>
 <div class="texto">Água</div>
 </div>
 
-<div class="card v1-fome" onclick="falar('Estou com fome')">
-<div class="emoji">🍌</div>
+<div class="card v1" onclick="falar('Estou com fome')">
+<div class="emoji">🐠</div>
 <div class="texto">Fome</div>
 </div>
 
-<div class="card v1-banheiro" onclick="falar('Quero ir ao banheiro')">
-<div class="emoji">🧻</div>
+<div class="card v1" onclick="falar('Quero ir ao banheiro')">
+<div class="emoji">🪼</div>
 <div class="texto">Banheiro</div>
 </div>
 
-<div class="card v1-brincar" onclick="falar('Quero brincar')">
-<div class="emoji">🪀</div>
+<div class="card v1" onclick="falar('Quero brincar')">
+<div class="emoji">🦀</div>
 <div class="texto">Brincar</div>
 </div>
 
-<div class="card v1-sono" onclick="falar('Estou com sono')">
+<div class="card v1" onclick="falar('Estou com sono')">
 <div class="emoji">🌙</div>
 <div class="texto">Sono</div>
 </div>
 
-<div class="card v1-dor" onclick="falar('Estou sentindo dor')">
-<div class="emoji">❤️‍🩹</div>
+<div class="card v1" onclick="falar('Estou sentindo dor')">
+<div class="emoji">🐙</div>
 <div class="texto">Dor</div>
 </div>
 
 </div>
-
-<p class="instrucoes">
-Toque nos cartões para ouvir o áudio 🔊
-</p>
 
 </section>
 
-<!-- ========================================= -->
-<!-- VERSÃO 2 -->
-<!-- ========================================= -->
+<!-- =========================
+VERSÃO 2
+========================= -->
 
-<section class="versao">
+<section class="tela" id="versao2">
 
-<h2 class="titulo-versao">🎨 Versão 2 — Estilo Divertido</h2>
+<button class="voltar" onclick="voltarMenu()">⬅ Voltar</button>
+
+<h2>🚀 Galáxia Divertida</h2>
 
 <div class="grid">
 
-<div class="card v2-agua" onclick="falar('Quero água')">
-<div class="emoji">🥤</div>
+<div class="card v2" onclick="falar('Quero água')">
+<div class="emoji">🛸</div>
 <div class="texto">Água</div>
 </div>
 
-<div class="card v2-fome" onclick="falar('Estou com fome')">
-<div class="emoji">🍞</div>
+<div class="card v2" onclick="falar('Estou com fome')">
+<div class="emoji">👽</div>
 <div class="texto">Fome</div>
 </div>
 
-<div class="card v2-banheiro" onclick="falar('Quero ir ao banheiro')">
-<div class="emoji">🚻</div>
+<div class="card v2" onclick="falar('Quero ir ao banheiro')">
+<div class="emoji">🌕</div>
 <div class="texto">Banheiro</div>
 </div>
 
-<div class="card v2-brincar" onclick="falar('Quero brincar')">
-<div class="emoji">⚽</div>
+<div class="card v2" onclick="falar('Quero brincar')">
+<div class="emoji">⭐</div>
 <div class="texto">Brincar</div>
 </div>
 
-<div class="card v2-sono" onclick="falar('Estou com sono')">
-<div class="emoji">☁️</div>
+<div class="card v2" onclick="falar('Estou com sono')">
+<div class="emoji">☄️</div>
 <div class="texto">Sono</div>
 </div>
 
-<div class="card v2-dor" onclick="falar('Estou sentindo dor')">
-<div class="emoji">😢</div>
+<div class="card v2" onclick="falar('Estou sentindo dor')">
+<div class="emoji">🪐</div>
 <div class="texto">Dor</div>
 </div>
 
 </div>
-
-<p class="instrucoes">
-Interface com ícones maiores e mais lúdicos ✨
-</p>
 
 </section>
 
-<!-- ========================================= -->
-<!-- VERSÃO 3 -->
-<!-- ========================================= -->
+<!-- =========================
+VERSÃO 3
+========================= -->
 
-<section class="versao">
+<section class="tela" id="versao3">
 
-<h2 class="titulo-versao">🧸 Versão 3 — Alto Contraste Infantil</h2>
+<button class="voltar" onclick="voltarMenu()">⬅ Voltar</button>
+
+<h2>🌳 Floresta Encantada</h2>
 
 <div class="grid">
 
-<div class="card v3-agua" onclick="falar('Quero água')">
-<div class="emoji">🚰</div>
+<div class="card v3" onclick="falar('Quero água')">
+<div class="emoji">🐸</div>
 <div class="texto">Água</div>
 </div>
 
-<div class="card v3-fome" onclick="falar('Estou com fome')">
-<div class="emoji">🍎</div>
+<div class="card v3" onclick="falar('Estou com fome')">
+<div class="emoji">🍓</div>
 <div class="texto">Fome</div>
 </div>
 
-<div class="card v3-banheiro" onclick="falar('Quero ir ao banheiro')">
-<div class="emoji">🚽</div>
+<div class="card v3" onclick="falar('Quero ir ao banheiro')">
+<div class="emoji">🌻</div>
 <div class="texto">Banheiro</div>
 </div>
 
-<div class="card v3-brincar" onclick="falar('Quero brincar')">
-<div class="emoji">🧸</div>
+<div class="card v3" onclick="falar('Quero brincar')">
+<div class="emoji">🦋</div>
 <div class="texto">Brincar</div>
 </div>
 
-<div class="card v3-sono" onclick="falar('Estou com sono')">
-<div class="emoji">😴</div>
+<div class="card v3" onclick="falar('Estou com sono')">
+<div class="emoji">🦉</div>
 <div class="texto">Sono</div>
 </div>
 
-<div class="card v3-dor" onclick="falar('Estou sentindo dor')">
-<div class="emoji">🤕</div>
+<div class="card v3" onclick="falar('Estou sentindo dor')">
+<div class="emoji">🐻</div>
 <div class="texto">Dor</div>
 </div>
 
 </div>
-
-<p class="instrucoes">
-Visual com cores fortes para facilitar identificação 👀
-</p>
 
 </section>
 
 <script>
 
-function falar(mensagem){
+function abrirVersao(id){
+
+    document.getElementById('menu').style.display='none';
+
+    document.querySelectorAll('.tela').forEach(tela=>{
+        tela.classList.remove('ativo');
+    });
+
+    document.getElementById(id).classList.add('ativo');
+
+}
+
+function voltarMenu(){
+
+    document.querySelectorAll('.tela').forEach(tela=>{
+        tela.classList.remove('ativo');
+    });
+
+    document.getElementById('menu').style.display='flex';
+
+}
+
+function falar(texto){
 
     if('speechSynthesis' in window){
 
         window.speechSynthesis.cancel();
 
-        const fala = new SpeechSynthesisUtterance(mensagem);
+        const fala = new SpeechSynthesisUtterance(texto);
 
-        fala.lang = 'pt-BR';
-        fala.rate = 0.85;
-        fala.pitch = 1.1;
-        fala.volume = 1;
+        fala.lang='pt-BR';
+        fala.rate=0.85;
+        fala.pitch=1.1;
 
         window.speechSynthesis.speak(fala);
 
-    } else {
-
-        alert("Seu navegador não suporta áudio.");
-
     }
+
 }
 
 </script>
