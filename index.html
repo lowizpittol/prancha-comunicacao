@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pranchas Interativas - Creche</title>
+<link rel="manifest" href="manifest.json">
 
+<meta name="theme-color" content="#42a5f5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Baloo+2:wght@500;700&family=Nunito:wght@700&display=swap');
@@ -305,7 +309,6 @@ VERSÃO 3 — FLORESTA
 
 </style>
 </head>
-
 <body>
 
 <!-- MENU -->
@@ -509,110 +512,107 @@ VERSÃO 3
 </section>
 
 <script>
-
+let vozesDisponiveis = [];
 let vozSelecionada = null;
 
 /* =========================
-ABRIR TELAS
+CARREGAR VOZES (Versão Mobile Friendly)
 ========================= */
-
-function abrirVersao(id){
-
-    document.getElementById('menu').style.display='none';
-
-    document.querySelectorAll('.tela').forEach(tela=>{
-        tela.classList.remove('ativo');
-    });
-
-    document.getElementById(id).classList.add('ativo');
-
+function carregarVozes() {
+    // Pega todas as vozes e filtra apenas as em português
+    vozesDisponiveis = speechSynthesis.getVoices().filter(v => v.lang.includes('pt'));
 }
 
-/* =========================
-VOLTAR MENU
-========================= */
-
-function voltarMenu(){
-
-    document.querySelectorAll('.tela').forEach(tela=>{
-        tela.classList.remove('ativo');
-    });
-
-    document.getElementById('menu').style.display='flex';
-
-}
+// O navegador avisa quando as vozes estão prontas
+speechSynthesis.onvoiceschanged = carregarVozes;
+// Tenta carregar imediatamente também (ajuda em alguns navegadores)
+carregarVozes();
 
 /* =========================
-SELEÇÃO DE VOZ
+SELEÇÃO DE VOZ INTELIGENTE
 ========================= */
-
-function selecionarVoz(tipo){
-
-    const vozes = speechSynthesis.getVoices();
-
-    if(tipo === 'feminina'){
-
-        vozSelecionada = vozes.find(v =>
-            v.lang.includes('pt') &&
-            (
-                v.name.toLowerCase().includes('female') ||
-                v.name.toLowerCase().includes('maria') ||
-                v.name.toLowerCase().includes('luciana') ||
-                v.name.toLowerCase().includes('google português')
-            )
-        );
-
-    } else {
-
-        vozSelecionada = vozes.find(v =>
-            v.lang.includes('pt') &&
-            (
-                v.name.toLowerCase().includes('male') ||
-                v.name.toLowerCase().includes('ricardo') ||
-                v.name.toLowerCase().includes('daniel')
-            )
-        );
-
+function selecionarVoz(tipo) {
+    if (vozesDisponiveis.length === 0) {
+        // Tenta carregar de novo caso o celular tenha demorado
+        carregarVozes(); 
     }
 
-    alert("Voz " + tipo + " selecionada!");
+    if (vozesDisponiveis.length === 0) {
+        alert("Ainda carregando as vozes do sistema... Tente novamente em 1 segundo.");
+        return;
+    }
 
+    if (tipo === 'feminina') {
+        // Tenta achar nomes femininos conhecidos. Se não achar, pega a PRIMEIRA voz em português disponível (que geralmente é a padrão feminina do celular)
+        vozSelecionada = vozesDisponiveis.find(v => 
+            v.name.toLowerCase().match(/(female|maria|luciana|mulher|feminina|f\b)/)
+        ) || vozesDisponiveis[0]; 
+    } else {
+        // Tenta achar nomes masculinos. Se não achar, pega a ÚLTIMA voz da lista (muitos celulares colocam a voz masculina como secundária)
+        vozSelecionada = vozesDisponiveis.find(v => 
+            v.name.toLowerCase().match(/(male|ricardo|daniel|homem|masculina|m\b)/)
+        ) || vozesDisponiveis[vozesDisponiveis.length - 1]; 
+    }
+
+    // Mostra o nome real da voz que o celular escolheu, para você saber o que está rodando por baixo dos panos
+    alert("Voz configurada: " + vozSelecionada.name);
 }
 
 /* =========================
 FALAR
 ========================= */
-
-function falar(texto){
-
-    if('speechSynthesis' in window){
-
-        window.speechSynthesis.cancel();
+function falar(texto) {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Corta a fala anterior se a criança clicar 2x rápido
 
         const fala = new SpeechSynthesisUtterance(texto);
+        fala.lang = 'pt-BR';
+        fala.rate = 0.9; // Um pouco mais lento para crianças entenderem melhor
+        fala.pitch = 1;
 
-        fala.lang='pt-BR';
-        fala.rate=0.85;
-        fala.pitch=1;
-
-        if(vozSelecionada){
+        if (vozSelecionada) {
             fala.voice = vozSelecionada;
+        } else if (vozesDisponiveis.length > 0) {
+            // Se a pessoa não clicou em nenhum botão de voz, usa a padrão
+            fala.voice = vozesDisponiveis[0]; 
         }
 
         speechSynthesis.speak(fala);
-
+    } else {
+        alert("Seu navegador não suporta leitura de voz.");
     }
-
 }
 
 /* =========================
-CARREGAR VOZES
+ABRIR TELAS E VOLTAR
 ========================= */
+function abrirVersao(id){
+    document.getElementById('menu').style.display='none';
+    document.querySelectorAll('.tela').forEach(tela=>{
+        tela.classList.remove('ativo');
+    });
+    document.getElementById(id).classList.add('ativo');
+}
 
-speechSynthesis.onvoiceschanged = () => {
-    speechSynthesis.getVoices();
-};
+function voltarMenu(){
+    document.querySelectorAll('.tela').forEach(tela=>{
+        tela.classList.remove('ativo');
+    });
+    document.getElementById('menu').style.display='flex';
+}
 
+// Registra o Service Worker para funcionar offline
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then((registration) => {
+        console.log('Service Worker registrado com sucesso:', registration.scope);
+      })
+      .catch((error) => {
+        console.log('Falha ao registrar o Service Worker:', error);
+      });
+  });
+}
 </script>
 
 </body>
