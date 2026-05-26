@@ -1,10 +1,10 @@
 {
-  "name": "Pranchas Interativas Creche",
-  "short_name": "Pranchas",
-  "description": "Pranchas de comunicação alternativa para crianças.",
+  "name": "Prancha Mágica",
+  "short_name": "Prancha Mágica",
+  "description": "Prancha de comunicação alternativa para crianças.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffecd2",
+  "background_color": "#81d4fa",
   "theme_color": "#42a5f5",
   "orientation": "portrait",
   "icons": [

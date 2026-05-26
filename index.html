@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pranchas Interativas - Creche</title>
+<title>Prancha Mágica</title>
 <link rel="manifest" href="manifest.json">
 
 <meta name="theme-color" content="#42a5f5">
@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Baloo+2:wght@500;700&family=Nunito:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap');
 
 *{
     margin:0;
@@ -21,98 +21,22 @@
 
 body{
     overflow:hidden;
-}
-
-/* =========================
-MENU
-========================= */
-
-.menu{
-    width:100%;
-    height:100vh;
-    background:linear-gradient(135deg,#ffecd2,#fcb69f);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-}
-
-.menu h1{
-    font-size:52px;
+    background: radial-gradient(circle at top left,#81d4fa,#4fc3f7,#0288d1);
     font-family:'Fredoka', sans-serif;
-    color:#5d4037;
-    margin-bottom:20px;
-}
-
-.menu p{
-    font-size:22px;
-    margin-bottom:40px;
-    color:#6d4c41;
-}
-
-.botoes-menu{
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
-    justify-content:center;
-}
-
-.botao-versao{
-    border:none;
-    padding:22px 40px;
-    border-radius:30px;
-    font-size:24px;
-    cursor:pointer;
-    transition:0.2s;
-    font-weight:bold;
-    color:white;
-}
-
-.botao-versao:hover{
-    transform:scale(1.08);
-}
-
-.v1-btn{
-    background:#42a5f5;
-}
-
-.v2-btn{
-    background:#ab47bc;
-}
-
-.v3-btn{
-    background:#43a047;
 }
 
 /* =========================
-TELAS
+ESTRUTURA PRINCIPAL
 ========================= */
 
-.tela{
+.prancha{
     width:100%;
     height:100vh;
-    display:none;
+    display:flex;
     flex-direction:column;
     align-items:center;
     overflow:auto;
-    padding:20px;
-}
-
-.ativo{
-    display:flex;
-}
-
-.voltar{
-    margin-top:10px;
-    margin-bottom:15px;
-    border:none;
-    padding:12px 24px;
-    border-radius:20px;
-    cursor:pointer;
-    font-size:18px;
-    font-weight:bold;
+    padding:30px 20px;
 }
 
 /* =========================
@@ -122,7 +46,7 @@ CONTROLE DE VOZ
 .controle-voz{
     display:flex;
     gap:15px;
-    margin-bottom:25px;
+    margin-bottom:35px;
     flex-wrap:wrap;
     justify-content:center;
 }
@@ -152,7 +76,7 @@ CONTROLE DE VOZ
 }
 
 /* =========================
-GRID
+GRID DE CARDS
 ========================= */
 
 .grid{
@@ -164,6 +88,9 @@ GRID
 }
 
 .card{
+    background:rgba(255,255,255,0.92);
+    border-bottom:10px solid #039be5;
+    color:#01579b;
     border-radius:35px;
     padding:25px;
     text-align:center;
@@ -178,354 +105,96 @@ GRID
 
 .emoji{
     margin-bottom:15px;
+    font-size:85px;
 }
 
 .texto{
     font-weight:bold;
-}
-
-@media(max-width:850px){
-
-    .grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-}
-
-@media(max-width:600px){
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-/* =====================================
-VERSÃO 1 — OCEANO
-===================================== */
-
-#versao1{
-    background:
-    radial-gradient(circle at top left,#81d4fa,#4fc3f7,#0288d1);
-    font-family:'Fredoka', sans-serif;
-}
-
-#versao1 h2{
-    font-size:48px;
-    color:white;
-    margin-bottom:20px;
-}
-
-#versao1 .voltar{
-    background:white;
-    color:#0288d1;
-}
-
-.v1{
-    background:rgba(255,255,255,0.92);
-    border-bottom:10px solid #039be5;
-    color:#01579b;
-}
-
-.v1 .emoji{
-    font-size:85px;
-}
-
-.v1 .texto{
     font-size:28px;
 }
 
-/* =====================================
-VERSÃO 2 — GALÁXIA
-===================================== */
-
-#versao2{
-    background:
-    linear-gradient(to bottom,#1a237e,#512da8,#7b1fa2);
-    font-family:'Baloo 2', cursive;
+@media(max-width:850px){
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 
-#versao2 h2{
-    font-size:56px;
-    color:#fff176;
-    margin-bottom:20px;
-}
-
-#versao2 .voltar{
-    background:#fff176;
-    color:#4a148c;
-}
-
-.v2{
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(8px);
-    border:3px solid rgba(255,255,255,0.4);
-    color:white;
-}
-
-.v2 .emoji{
-    font-size:92px;
-}
-
-.v2 .texto{
-    font-size:32px;
-}
-
-/* =====================================
-VERSÃO 3 — FLORESTA
-===================================== */
-
-#versao3{
-    background:
-    linear-gradient(135deg,#c8e6c9,#81c784,#388e3c);
-    font-family:'Nunito', sans-serif;
-}
-
-#versao3 h2{
-    font-size:50px;
-    color:#1b5e20;
-    margin-bottom:20px;
-}
-
-#versao3 .voltar{
-    background:#1b5e20;
-    color:white;
-}
-
-.v3{
-    background:#fff8e1;
-    border-bottom:10px solid #ffca28;
-    color:#5d4037;
-    box-shadow:0 10px 20px rgba(0,0,0,0.12);
-}
-
-.v3 .emoji{
-    font-size:78px;
-}
-
-.v3 .texto{
-    font-size:30px;
+@media(max-width:600px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+    .emoji{
+        font-size:70px;
+    }
+    .texto{
+        font-size:24px;
+    }
 }
 
 </style>
 </head>
 <body>
 
-<!-- MENU -->
+<main class="prancha">
 
-<div class="menu" id="menu">
+    <div class="controle-voz">
+        <button onclick="selecionarVoz('feminina')" class="voz-btn feminina">
+        👩 Voz Feminina
+        </button>
 
-<h1>🌟 Pranchas da Creche</h1>
+        <button onclick="selecionarVoz('masculina')" class="voz-btn masculina">
+        👨 Voz Masculina
+        </button>
+    </div>
 
-<p>Escolha uma versão para testar com as crianças</p>
+    <div class="grid">
 
-<div class="botoes-menu">
+        <div class="card" onclick="falar('Quero água')">
+            <div class="emoji">💧</div>
+            <div class="texto">Água</div>
+        </div>
 
-<button class="botao-versao v1-btn" onclick="abrirVersao('versao1')">
-🌊 Versão 1
-</button>
+        <div class="card" onclick="falar('Estou com fome')">
+            <div class="emoji">🍎</div>
+            <div class="texto">Fome</div>
+        </div>
 
-<button class="botao-versao v2-btn" onclick="abrirVersao('versao2')">
-🚀 Versão 2
-</button>
+        <div class="card" onclick="falar('Quero ir ao banheiro')">
+            <div class="emoji">🚽</div>
+            <div class="texto">Banheiro</div>
+        </div>
 
-<button class="botao-versao v3-btn" onclick="abrirVersao('versao3')">
-🌳 Versão 3
-</button>
+        <div class="card" onclick="falar('Quero brincar')">
+            <div class="emoji">🧸</div>
+            <div class="texto">Brincar</div>
+        </div>
 
-</div>
+        <div class="card" onclick="falar('Estou com sono')">
+            <div class="emoji">😴</div>
+            <div class="texto">Sono</div>
+        </div>
 
-</div>
+        <div class="card" onclick="falar('Estou sentindo dor')">
+            <div class="emoji">🤕</div>
+            <div class="texto">Dor</div>
+        </div>
 
-<!-- =========================
-VERSÃO 1
-========================= -->
+    </div>
 
-<section class="tela" id="versao1">
-
-<button class="voltar" onclick="voltarMenu()">⬅ Voltar</button>
-
-<h2>🌊 Mundo do Oceano</h2>
-
-<div class="controle-voz">
-
-<button onclick="selecionarVoz('feminina')" class="voz-btn feminina">
-👩 Voz Feminina
-</button>
-
-<button onclick="selecionarVoz('masculina')" class="voz-btn masculina">
-👨 Voz Masculina
-</button>
-
-</div>
-
-<div class="grid">
-
-<div class="card v1" onclick="falar('Quero água')">
-<div class="emoji">💧</div>
-<div class="texto">Água</div>
-</div>
-
-<div class="card v1" onclick="falar('Estou com fome')">
-<div class="emoji">🍎</div>
-<div class="texto">Fome</div>
-</div>
-
-<div class="card v1" onclick="falar('Quero ir ao banheiro')">
-<div class="emoji">🚽</div>
-<div class="texto">Banheiro</div>
-</div>
-
-<div class="card v1" onclick="falar('Quero brincar')">
-<div class="emoji">🧸</div>
-<div class="texto">Brincar</div>
-</div>
-
-<div class="card v1" onclick="falar('Estou com sono')">
-<div class="emoji">😴</div>
-<div class="texto">Sono</div>
-</div>
-
-<div class="card v1" onclick="falar('Estou sentindo dor')">
-<div class="emoji">🤕</div>
-<div class="texto">Dor</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-VERSÃO 2
-========================= -->
-
-<section class="tela" id="versao2">
-
-<button class="voltar" onclick="voltarMenu()">⬅ Voltar</button>
-
-<h2>🚀 Galáxia Divertida</h2>
-
-<div class="controle-voz">
-
-<button onclick="selecionarVoz('feminina')" class="voz-btn feminina">
-👩 Voz Feminina
-</button>
-
-<button onclick="selecionarVoz('masculina')" class="voz-btn masculina">
-👨 Voz Masculina
-</button>
-
-</div>
-
-<div class="grid">
-
-<div class="card v2" onclick="falar('Quero água')">
-<div class="emoji">🚰</div>
-<div class="texto">Água</div>
-</div>
-
-<div class="card v2" onclick="falar('Estou com fome')">
-<div class="emoji">🍌</div>
-<div class="texto">Fome</div>
-</div>
-
-<div class="card v2" onclick="falar('Quero ir ao banheiro')">
-<div class="emoji">🧻</div>
-<div class="texto">Banheiro</div>
-</div>
-
-<div class="card v2" onclick="falar('Quero brincar')">
-<div class="emoji">⚽</div>
-<div class="texto">Brincar</div>
-</div>
-
-<div class="card v2" onclick="falar('Estou com sono')">
-<div class="emoji">🌙</div>
-<div class="texto">Sono</div>
-</div>
-
-<div class="card v2" onclick="falar('Estou sentindo dor')">
-<div class="emoji">❤️‍🩹</div>
-<div class="texto">Dor</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- =========================
-VERSÃO 3
-========================= -->
-
-<section class="tela" id="versao3">
-
-<button class="voltar" onclick="voltarMenu()">⬅ Voltar</button>
-
-<h2>🌳 Floresta Encantada</h2>
-
-<div class="controle-voz">
-
-<button onclick="selecionarVoz('feminina')" class="voz-btn feminina">
-👩 Voz Feminina
-</button>
-
-<button onclick="selecionarVoz('masculina')" class="voz-btn masculina">
-👨 Voz Masculina
-</button>
-
-</div>
-
-<div class="grid">
-
-<div class="card v3" onclick="falar('Quero água')">
-<div class="emoji">💧</div>
-<div class="texto">Água</div>
-</div>
-
-<div class="card v3" onclick="falar('Estou com fome')">
-<div class="emoji">🍞</div>
-<div class="texto">Fome</div>
-</div>
-
-<div class="card v3" onclick="falar('Quero ir ao banheiro')">
-<div class="emoji">🚽</div>
-<div class="texto">Banheiro</div>
-</div>
-
-<div class="card v3" onclick="falar('Quero brincar')">
-<div class="emoji">🪀</div>
-<div class="texto">Brincar</div>
-</div>
-
-<div class="card v3" onclick="falar('Estou com sono')">
-<div class="emoji">🌙</div>
-<div class="texto">Sono</div>
-</div>
-
-<div class="card v3" onclick="falar('Estou sentindo dor')">
-<div class="emoji">🤕</div>
-<div class="texto">Dor</div>
-</div>
-
-</div>
-
-</section>
+</main>
 
 <script>
 let vozesDisponiveis = [];
 let vozSelecionada = null;
 
 /* =========================
-CARREGAR VOZES (Versão Mobile Friendly)
+CARREGAR VOZES
 ========================= */
 function carregarVozes() {
-    // Pega todas as vozes e filtra apenas as em português
     vozesDisponiveis = speechSynthesis.getVoices().filter(v => v.lang.includes('pt'));
 }
 
-// O navegador avisa quando as vozes estão prontas
 speechSynthesis.onvoiceschanged = carregarVozes;
-// Tenta carregar imediatamente também (ajuda em alguns navegadores)
 carregarVozes();
 
 /* =========================
@@ -533,47 +202,42 @@ SELEÇÃO DE VOZ INTELIGENTE
 ========================= */
 function selecionarVoz(tipo) {
     if (vozesDisponiveis.length === 0) {
-        // Tenta carregar de novo caso o celular tenha demorado
         carregarVozes(); 
     }
 
     if (vozesDisponiveis.length === 0) {
-        alert("Ainda carregando as vozes do sistema... Tente novamente em 1 segundo.");
+        alert("Carregando as vozes do sistema... Tente novamente em 1 segundo.");
         return;
     }
 
     if (tipo === 'feminina') {
-        // Tenta achar nomes femininos conhecidos. Se não achar, pega a PRIMEIRA voz em português disponível (que geralmente é a padrão feminina do celular)
         vozSelecionada = vozesDisponiveis.find(v => 
             v.name.toLowerCase().match(/(female|maria|luciana|mulher|feminina|f\b)/)
         ) || vozesDisponiveis[0]; 
     } else {
-        // Tenta achar nomes masculinos. Se não achar, pega a ÚLTIMA voz da lista (muitos celulares colocam a voz masculina como secundária)
         vozSelecionada = vozesDisponiveis.find(v => 
             v.name.toLowerCase().match(/(male|ricardo|daniel|homem|masculina|m\b)/)
         ) || vozesDisponiveis[vozesDisponiveis.length - 1]; 
     }
 
-    // Mostra o nome real da voz que o celular escolheu, para você saber o que está rodando por baixo dos panos
     alert("Voz configurada: " + vozSelecionada.name);
 }
 
 /* =========================
-FALAR
+SISTEMA DE FALA
 ========================= */
 function falar(texto) {
     if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel(); // Corta a fala anterior se a criança clicar 2x rápido
+        window.speechSynthesis.cancel(); 
 
         const fala = new SpeechSynthesisUtterance(texto);
         fala.lang = 'pt-BR';
-        fala.rate = 0.9; // Um pouco mais lento para crianças entenderem melhor
+        fala.rate = 0.9; 
         fala.pitch = 1;
 
         if (vozSelecionada) {
             fala.voice = vozSelecionada;
         } else if (vozesDisponiveis.length > 0) {
-            // Se a pessoa não clicou em nenhum botão de voz, usa a padrão
             fala.voice = vozesDisponiveis[0]; 
         }
 
@@ -584,24 +248,8 @@ function falar(texto) {
 }
 
 /* =========================
-ABRIR TELAS E VOLTAR
+REGISTRO DO SERVICE WORKER (OFFLINE)
 ========================= */
-function abrirVersao(id){
-    document.getElementById('menu').style.display='none';
-    document.querySelectorAll('.tela').forEach(tela=>{
-        tela.classList.remove('ativo');
-    });
-    document.getElementById(id).classList.add('ativo');
-}
-
-function voltarMenu(){
-    document.querySelectorAll('.tela').forEach(tela=>{
-        tela.classList.remove('ativo');
-    });
-    document.getElementById('menu').style.display='flex';
-}
-
-// Registra o Service Worker para funcionar offline
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./service-worker.js')
